@@ -13,13 +13,15 @@ class LoginForm extends Component {
                             <Text>Sign In</Text>
                         </CardItem>
                         <CardItem>
-                                <Item rounded>
-                                    <Input placeholder='username'/>
-                                </Item>
+                            <Item inlineLabel>
+                                <Label>Username</Label>
+                                <Input />
+                            </Item>
                         </CardItem>
                         <CardItem>
-                            <Item rounded>
-                                <Input placeholder='password'/>
+                            <Item inlineLabel>
+                                <Label>Password</Label>
+                                <Input secureTextEntry={true} />
                             </Item>
                         </CardItem>
                         <CardItem >
