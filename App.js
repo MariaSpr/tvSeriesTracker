@@ -5,25 +5,23 @@
  */
 
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          This is init project
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-      </View>
+        <Container>
+            <Header>
+                <Left />
+                <Body>
+                <Title>Login</Title>
+                </Body>
+                <Right />
+            </Header>
+        </Container>
     );
   }
 }
