@@ -6,8 +6,9 @@
 
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import firebase from 'firebase'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import LoginForm from './src/components/LoginForm';
+import firebase from 'firebase';
 
 
 
@@ -35,6 +36,7 @@ export default class App extends Component {
                 </Body>
               <Right style={styles.headerCenter} />
             </Header>
+            <LoginForm />
         </Container>
     );
   }
