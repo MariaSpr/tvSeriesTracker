@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Spinner } from 'native-base';
 import LoginForm from './src/components/LoginForm';
 import firebase from 'firebase';
 
@@ -14,6 +14,9 @@ import firebase from 'firebase';
 
 
 export default class App extends Component {
+
+    state = { loggedInUser :false}
+
     componentWillMount() {
         // Firebase initialization before rendering
         firebase.initializeApp({
@@ -25,7 +28,34 @@ export default class App extends Component {
             messagingSenderId: "419188042738"
         })
 
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ loggedInUser: true });
+            } else {
+                this.setState({ loggedInUser: false });
+            }
+        });
+
     }
+
+
+    signInRender() {
+        switch (this.state.loggedInUser) {
+            case true:
+                return (
+                    <Button danger onPress={() => firebase.auth().signOut()}>
+                        <Text>Sign Out</Text>
+                    </Button>
+                );
+            case false:
+                return <LoginForm />;
+            default:
+                return <Spinner color='blue' />;
+        }
+    }
+
+
+
   render() {
     return (
         <Container>
@@ -36,7 +66,7 @@ export default class App extends Component {
                 </Body>
               <Right style={styles.headerCenter} />
             </Header>
-            <LoginForm />
+            {this.signInRender()}
         </Container>
     );
   }
