@@ -3,6 +3,11 @@ import {StyleSheet, View} from 'react-native';
 import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Button, Form, Item, Label, Input } from 'native-base';
 
 class LoginForm extends Component {
+    state = {
+        email: '',
+        password: ''
+        };
+
     render() {
         return (
             <Container>
@@ -14,14 +19,18 @@ class LoginForm extends Component {
                         </CardItem>
                         <CardItem>
                             <Item inlineLabel>
-                                <Label>Username</Label>
-                                <Input />
+                                <Label>Email:</Label>
+                                <Input
+                                    value={this.state.email}
+                                    onChangeText={email => this.setState({email})}/>
                             </Item>
                         </CardItem>
                         <CardItem>
                             <Item inlineLabel>
-                                <Label>Password</Label>
-                                <Input secureTextEntry={true} />
+                                <Label>Password:</Label>
+                                <Input secureTextEntry={true}
+                                       value={this.state.password}
+                                       onChangeText={password => this.setState({password})}/>
                             </Item>
                         </CardItem>
                         <CardItem >
