@@ -8,8 +8,14 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Spinner } from 'native-base';
 import LoginForm from './src/components/LoginForm';
+import {LoggedOut} from "./src/components/common/Router";
 import firebase from 'firebase';
 
+
+// const Router  = StackNavigator({
+//     Login: {screen: LoginScreen},
+//     Main: {screen: MainScreen}
+// });
 
 
 
@@ -39,35 +45,26 @@ export default class App extends Component {
     }
 
 
-    signInRender() {
-        switch (this.state.loggedInUser) {
-            case true:
-                return (
-                    <Button danger onPress={() => firebase.auth().signOut()}>
-                        <Text>Sign Out</Text>
-                    </Button>
-                );
-            case false:
-                return <LoginForm />;
-            default:
-                return <Spinner color='blue' />;
-        }
-    }
+    // signInRender() {
+    //     switch (this.state.loggedInUser) {
+    //         case true:
+    //             return (
+    //                 <Button danger onPress={() => firebase.auth().signOut()}>
+    //                     <Text>Sign Out</Text>
+    //                 </Button>
+    //             );
+    //         case false:
+    //             return <Router />;
+    //         default:
+    //             return <Spinner color='blue' />;
+    //     }
+    // }
 
 
 
   render() {
     return (
-        <Container>
-            <Header>
-                <Left style={styles.headerCenter} />
-                <Body style={styles.headerCenter}>
-                  <Title>tvSeriesTracker</Title>
-                </Body>
-              <Right style={styles.headerCenter} />
-            </Header>
-            {this.signInRender()}
-        </Container>
+        <LoggedOut />
     );
   }
 }
@@ -77,3 +74,7 @@ const styles = StyleSheet.create({
     flex:1
   }
 });
+
+
+
+
