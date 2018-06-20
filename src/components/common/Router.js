@@ -1,9 +1,11 @@
 import React from "react";
-import {StackNavigator, DrawerNavigator, SwitchNavigator} from "react-navigation";
+import {StackNavigator, DrawerNavigator, SwitchNavigator, NavigationActions} from "react-navigation";
 
 import Login from "../../screens/LoginScreen";
 import Main from "../../screens/MainScreen";
 import Profile from "../../screens/ProfileScreen";
+import DrawerMenu from "../../components/common/DrawerMenu";
+import SideBar from "../../components/common/SideBar";
 
 
 export const LoggedOut = StackNavigator({
@@ -29,6 +31,10 @@ export const LoggedIn = DrawerNavigator(
                 drawerLabel: "Profile",
             }
         }
+    },
+    {
+        contentComponent: SideBar,
+        drawerWidth: 200
     }
 );
 
