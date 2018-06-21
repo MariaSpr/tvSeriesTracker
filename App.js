@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Spinner } from 'native-base';
 import LoginForm from './src/components/LoginForm';
-import {LoggedOut, LoggedIn} from "./src/components/common/Router";
+import {LoggedOut, LoggedIn, ShowDetails} from "./src/components/common/Router";
 import firebase from 'firebase';
 
 

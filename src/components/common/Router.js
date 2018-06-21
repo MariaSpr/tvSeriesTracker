@@ -4,6 +4,7 @@ import {StackNavigator, DrawerNavigator, SwitchNavigator, NavigationActions} fro
 import Login from "../../screens/LoginScreen";
 import Main from "../../screens/MainScreen";
 import Profile from "../../screens/ProfileScreen";
+import Details from "../../screens/DetailsScreen";
 import DrawerMenu from "../../components/common/DrawerMenu";
 import SideBar from "../../components/common/SideBar";
 
@@ -37,6 +38,19 @@ export const LoggedIn = DrawerNavigator(
         drawerWidth: 200
     }
 );
+
+export const ShowDetails = StackNavigator({
+    Details: {
+        screen: Details,
+        navigationOptions: {
+            title: 'Show Details',
+            }
+        }
+    }, {
+        headerMode: 'none',
+    }
+);
+
 
 export const createRootNavigator = (signedIn = false) => {
     return SwitchNavigator(
