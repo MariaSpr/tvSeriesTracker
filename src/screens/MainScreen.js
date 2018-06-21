@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Spinner } from 'native-base';
+import { Container, Header, Title, Tab, Tabs, Button, Left, Right, Body, Icon, Text, Spinner, Content } from 'native-base';
 import {DrawerActions} from "react-navigation";
+import ExploreTab from './Tabs/ExploreTab';
+import WatchListTab from './Tabs/WatchListTab';
 
 class MainScreen extends Component {
 
@@ -12,7 +14,8 @@ class MainScreen extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-                <Header>
+            <Container>
+                <Header hasTabs>
                     <Left>
                         <Button
                             transparent
@@ -25,6 +28,19 @@ class MainScreen extends Component {
                     </Body>
                     <Right />
                 </Header>
+                <Content>
+                    <Tabs initialPage={0}>
+                        <Tab heading="Explore">
+                            <ExploreTab />
+                        </Tab>
+                        <Tab heading="WatchList">
+                            <WatchListTab />
+                        </Tab>
+                    </Tabs>
+                </Content>
+
+            </Container>
+
         );
     }
 }
