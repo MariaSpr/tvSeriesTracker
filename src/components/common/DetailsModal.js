@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, View, ScrollView, Image, Modal, TouchableHighlight, ImageBackground} from 'react-native';
-import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbnail, Left, Button, Icon } from 'native-base';
+import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbnail, Left, Button, Icon, Badge } from 'native-base';
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
 import axios from 'axios';
 import SeasonDetail from "./SeasonDetail";
@@ -32,6 +32,23 @@ class DetailsModal extends Component{
         );
     }
 
+    renderGenres() {
+        return this.state.genres.map((genre,index) =>
+            <Badge key={index} info>
+                <Text> {" "+genre['name']+" "} </Text>
+            </Badge>
+        );
+    }
+
+    renderNetworks() {
+        return this.state.networks.map((network,index) =>
+                <Text key={index}> {network['name']} </Text>
+
+        );
+    }
+
+
+
 
     render () {
         const {show} = this.props;
@@ -61,6 +78,17 @@ class DetailsModal extends Component{
                     <CardItem header>
                         <Text style={styles.normalText}># episodes: {this.state.tvShowDetails['number_of_episodes']} </Text>
                         <Text style={styles.normalText}># seasons: {this.state.tvShowDetails['number_of_seasons']} </Text>
+                    </CardItem>
+                    <CardItem >
+                        <Left>
+                            <Icon name='ios-desktop-outline' />
+                            {this.renderNetworks()}
+                        </Left>
+                    </CardItem>
+                    <CardItem bordered>
+                        <Left>
+                            {this.renderGenres()}
+                        </Left>
                     </CardItem>
                     <CardItem>
                         <Body>

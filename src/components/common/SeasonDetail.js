@@ -20,6 +20,7 @@ class SeasonDetail extends Component{
                     </CardItem>
                     <CardItem header bordered>
                         <Left>
+                            <Icon name='calendar'></Icon>
                             <Text>{"Air Date: "+season['air_date']}</Text>
                         </Left>
                     </CardItem>
