@@ -3,23 +3,33 @@ import {StyleSheet, View, ScrollView, Image, Modal, TouchableHighlight, ImageBac
 import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbnail, Left, Button, Icon } from 'native-base';
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
 import axios from 'axios';
+import SeasonDetail from "./SeasonDetail";
 
 
 class DetailsModal extends Component{
 
-    state = {tvShowDetails: {}};
+    state = {tvShowDetails: {}, seasons: [], genres: [], networks: []};
 
     componentWillMount(){
         const {show} = this.props;
         console.log(show['id']);
         console.log(TMDB_URL+'tv/'+show['id']+TMDB_API_KEY);
         axios.get(TMDB_URL+'tv/'+show['id']+TMDB_API_KEY)
-            .then(res => {this.setState({tvShowDetails: res.data});
+            .then(res => {
+                this.setState({tvShowDetails: res.data, seasons: res.data.seasons, genres: res.data.genres, networks: res.data.networks},
+
+                );
                 console.log(res);
                 console.log(this.state.tvShowDetails['homepage']);
             })
             .catch(err => {console.log(err)})
 
+    }
+
+    renderSeasons() {
+        return this.state.seasons.map((season,index) =>
+                <SeasonDetail key={index} season={season} />
+        );
     }
 
 
@@ -39,7 +49,8 @@ class DetailsModal extends Component{
                                 </Button>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.textStyleTitle}>{show['original_name']}</Text>
-                                    <Text style={styles.normalText}>{show['first_air_date']}</Text>
+                                    <Text style={styles.normalTextWhite}>Last aired: {this.state.tvShowDetails['last_air_date']}</Text>
+                                    <Text style={styles.normalTextWhite}>{this.state.tvShowDetails['status']}</Text>
                                 </View>
                             </View>
 
@@ -48,14 +59,16 @@ class DetailsModal extends Component{
                 </ImageBackground>
                 <Card>
                     <CardItem header>
-                        <Text>{show['original_name']}</Text>
+                        <Text style={styles.normalText}># episodes: {this.state.tvShowDetails['number_of_episodes']} </Text>
+                        <Text style={styles.normalText}># seasons: {this.state.tvShowDetails['number_of_seasons']} </Text>
                     </CardItem>
                     <CardItem>
                         <Body>
-                        <Text>{show['overview']}</Text>
+                            <Text>{show['overview']}</Text>
                         </Body>
                     </CardItem>
                 </Card>
+                {this.renderSeasons()}
             </ScrollView>
         );
 
@@ -78,16 +91,16 @@ const styles  = StyleSheet.create({
         flexDirection: 'row',
     },
     imagePoster: {
-        height: 150,
-        width: 100,
+        height: 200,
+        width: 150,
         borderColor: 'black',
         borderWidth: 1,
-        marginRight: 20,
+        marginRight: 10,
         marginLeft: 20,
     },
     buttonStyle: {
         padding: 10,
-        margin: 20,
+        margin: 10,
         borderRadius: 30,
     },
     textStyleTitle: {
@@ -95,8 +108,11 @@ const styles  = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
     },
-    normalText: {
+    normalTextWhite: {
         color: 'white',
+    },
+    normalText: {
+        color:'black',
     },
     textContainer: {
         margin: 20,
