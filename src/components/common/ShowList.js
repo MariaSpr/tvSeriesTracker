@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Button, Form, Item, Label, Input, Spinner } from 'native-base';
+import { List, ListItem } from 'native-base';
 import axios from 'axios';
+import ShowDetail from './ShowDetail';
+import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
 import firebase from 'firebase';
 
 
@@ -9,7 +11,7 @@ class ShowList extends Component{
     state = {shows: []};
 
     componentWillMount(){
-        axios.get('http://api.themoviedb.org/3/tv/popular?api_key=2e531a7dc0ef5462b9146f28f4b7492e')
+        axios.get(TMDB_URL+'tv/popular'+TMDB_API_KEY)
             .then(res => {this.setState({shows: res.data.results});
             console.log(res.data.results);
             })
@@ -19,7 +21,7 @@ class ShowList extends Component{
 
     renderShows() {
         return this.state.shows.map((show,index) =>
-            <Text key={index}>{show['original_name']}</Text>
+            <ShowDetail key={index} show={show} />
         );
     }
 
