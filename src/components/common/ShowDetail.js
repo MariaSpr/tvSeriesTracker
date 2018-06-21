@@ -53,34 +53,7 @@ class ShowDetail extends Component{
                         this.setModalVisible(!this.state.modalVisible);
                     }}>
 
-                        <ImageBackground style={{flex: 1, resizeMode:'cover'}} source={{ uri: TMDB_IMG_URL+show['backdrop_path'] }}>
-                            <View style={styles.Container}>
-                                <View style={styles.buttonAndCover}>
-                                    <Image style={styles.imagePoster} source={{ uri: TMDB_IMG_URL+show['poster_path'] }}/>
-                                    <View>
-                                        <Button primary style={styles.buttonStyle}>
-                                            <Text style={styles.textStyleInsideImage}>ADD TO WATCHLIST</Text>
-                                        </Button>
-                                        <View style={styles.textContainer}>
-                                            <Text style={styles.textStyleTitle}>{show['original_name']}</Text>
-                                            <Text style={styles.normalText}>{show['first_air_date']}</Text>
-                                        </View>
-                                    </View>
-
-                                </View>
-                            </View>
-                        </ImageBackground>
-
-                        <Card>
-                            <CardItem header>
-                                <Text>{show['original_name']}</Text>
-                            </CardItem>
-                            <CardItem>
-                                <Body>
-                                <Text>{show['overview']}</Text>
-                                </Body>
-                            </CardItem>
-                        </Card>
+                        <DetailsModal show={show}/>
 
                 </Modal>
             </View>
