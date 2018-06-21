@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {StyleSheet, View, ScrollView, Image, Modal, TouchableHighlight} from 'react-native';
+import {StyleSheet, View, ScrollView, Image, Modal, TouchableHighlight, ImageBackground} from 'react-native';
 import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbnail, Left, Button, Icon } from 'native-base';
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
+import DetailsModal from "./DetailsModal";
 
 
 class ShowDetail extends Component{
@@ -17,7 +18,7 @@ class ShowDetail extends Component{
     render () {
         const {show} = this.props;
         return (
-            <Content padder>
+            <View>
                 <Card>
                     <CardItem header bordered>
                         <Text>{show['original_name']}</Text>
@@ -49,25 +50,72 @@ class ShowDetail extends Component{
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
-                        alert('Modal has been closed.');
+                        this.setModalVisible(!this.state.modalVisible);
                     }}>
-                    <View style={{marginTop: 22}}>
-                        <View>
-                            <Text>Hello World!</Text>
 
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
-                                <Text>Hide Modal</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
+                        <ImageBackground style={{flex: 1, resizeMode:'cover'}} source={{ uri: TMDB_IMG_URL+show['backdrop_path'] }}>
+                            <View style={styles.Container}>
+                                <View style={styles.buttonAndCover}>
+                                    <Image style={styles.imagePoster} source={{ uri: TMDB_IMG_URL+show['poster_path'] }}/>
+                                    <View>
+                                        <Button primary style={styles.buttonStyle}>
+                                            <Text style={styles.textStyleInsideImage}>ADD TO WATCHLIST</Text>
+                                        </Button>
+                                        <Text style={styles.textStyleInsideImage}>INFO</Text>
+                                    </View>
+
+                                </View>
+                                <View>
+                                    <Text style={styles.textStyleInsideImage}>INFO</Text>
+                                </View>
+                            </View>
+                        </ImageBackground>
+
+                        <Card>
+                            <CardItem header>
+                                <Text>{show['original_name']}</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                <Text>{show['overview']}</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+
                 </Modal>
-            </Content>
+            </View>
         );
 
     }
 }
+
+const styles  = StyleSheet.create({
+    Container: {
+        backgroundColor: 'transparent',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
+        flex:1,
+    },
+    textStyleInsideImage: {
+        color: 'white',
+        fontWeight:'bold',
+    },
+    buttonAndCover: {
+        flexDirection: 'row',
+    },
+    imagePoster: {
+        height: 250,
+        width: 150,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginRight: 20,
+        marginLeft: 20,
+    },
+    buttonStyle: {
+        padding: 10,
+        margin: 20,
+        borderRadius: 30,
+    }
+});
 
 export default ShowDetail;
