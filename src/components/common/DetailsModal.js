@@ -2,9 +2,25 @@ import React, { Component } from 'react';
 import {StyleSheet, View, ScrollView, Image, Modal, TouchableHighlight, ImageBackground} from 'react-native';
 import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbnail, Left, Button, Icon } from 'native-base';
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
+import axios from 'axios';
 
 
 class DetailsModal extends Component{
+
+    state = {tvShowDetails: {}};
+
+    componentWillMount(){
+        const {show} = this.props;
+        console.log(show['id']);
+        console.log(TMDB_URL+'tv/'+show['id']+TMDB_API_KEY);
+        axios.get(TMDB_URL+'tv/'+show['id']+TMDB_API_KEY)
+            .then(res => {this.setState({tvShowDetails: res.data});
+                console.log(res);
+                console.log(this.state.tvShowDetails['homepage']);
+            })
+            .catch(err => {console.log(err)})
+
+    }
 
 
     render () {
@@ -13,7 +29,7 @@ class DetailsModal extends Component{
         console.log(show['original_name']);
         return (
             <ScrollView>
-                <ImageBackground style={{height:'100%',flex: 1, resizeMode:'cover'}} source={{ uri: TMDB_IMG_URL+show['backdrop_path'] }}>
+                <ImageBackground style={{height:'100%',flex: 1}} source={{ uri: TMDB_IMG_URL+show['backdrop_path'] }}>
                     <View style={styles.Container}>
                         <View style={styles.buttonAndCover}>
                             <Image style={styles.imagePoster} source={{ uri: TMDB_IMG_URL+show['poster_path'] }}/>
