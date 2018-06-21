@@ -61,12 +61,12 @@ class ShowDetail extends Component{
                                         <Button primary style={styles.buttonStyle}>
                                             <Text style={styles.textStyleInsideImage}>ADD TO WATCHLIST</Text>
                                         </Button>
-                                        <Text style={styles.textStyleInsideImage}>INFO</Text>
+                                        <View style={styles.textContainer}>
+                                            <Text style={styles.textStyleTitle}>{show['original_name']}</Text>
+                                            <Text style={styles.normalText}>{show['first_air_date']}</Text>
+                                        </View>
                                     </View>
 
-                                </View>
-                                <View>
-                                    <Text style={styles.textStyleInsideImage}>INFO</Text>
                                 </View>
                             </View>
                         </ImageBackground>
@@ -115,6 +115,17 @@ const styles  = StyleSheet.create({
         padding: 10,
         margin: 20,
         borderRadius: 30,
+    },
+    textStyleTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    normalText: {
+        color: 'white',
+    },
+    textContainer: {
+        margin: 20,
     }
 });
 
