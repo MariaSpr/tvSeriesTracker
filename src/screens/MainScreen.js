@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Tab, Tabs, Button, Left, Right, Body, Icon, Text, Spinner, Content } from 'native-base';
+import { Container, Header, Title, Tab, Tabs, Button, Left, Right, Body, Icon, Text, Spinner, Content, Item, Input } from 'native-base';
 import {DrawerActions} from "react-navigation";
 import ExploreTab from './Tabs/ExploreTab';
 import WatchListTab from './Tabs/WatchListTab';
@@ -15,7 +15,7 @@ class MainScreen extends Component {
         const { navigate } = this.props.navigation;
         return (
             <Container>
-                <Header hasTabs>
+                <Header hasTabs searchBar rounded>
                     <Left>
                         <Button
                             transparent
@@ -26,7 +26,11 @@ class MainScreen extends Component {
                     <Body>
                     <Title>tvSeriesTracker</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent>
+                            <Icon name='search'></Icon>
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
                     <Tabs initialPage={0}>
