@@ -52,18 +52,18 @@ export const ShowDetails = StackNavigator({
 );
 
 
-export const createRootNavigator = (signedIn = false) => {
+export const createRootNavigator = (loggedInUser = false) => {
     return SwitchNavigator(
         {
-            SignedIn: {
-                screen: SignedIn
+            LoggedIn: {
+                screen: LoggedIn
             },
-            SignedOut: {
-                screen: SignedOut
+            LoggedOut: {
+                screen: LoggedOut
             }
         },
         {
-            initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+            initialRouteName: loggedInUser ? "LoggedIn" : "LoggedOut"
         }
     );
 };
