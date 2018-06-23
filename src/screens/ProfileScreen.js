@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         margin: 50,
     },
     Icon: {
-        fontSize: 35,
+        fontSize: 15,
     },
     Button: {
         margin: 20,
