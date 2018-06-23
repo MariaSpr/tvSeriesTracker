@@ -4,6 +4,7 @@ import { Container, Header, Content, Footer, Text, Card, CardItem, Body, Thumbna
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
 import axios from 'axios';
 import SeasonDetail from "./SeasonDetail";
+import firebase from 'firebase';
 
 
 class DetailsModal extends Component{
@@ -47,6 +48,21 @@ class DetailsModal extends Component{
         );
     }
 
+    onAddToWatchListPressed() {
+        console.log('add to watchlist pressed');
+        const {currentUser} = firebase.auth();
+        const showID = this.props.show['id'];
+        var firebaseRef = firebase.database().ref(`users/${currentUser.uid}/watchlist`);
+        console.log(firebaseRef.child(showID));
+        firebaseRef.child(showID).push({
+                original_name: this.props.show['original_name'],
+                backdrop_path: this.props.show['backdrop_path'],
+                overview: this.props.show['overview'],
+                name: this.props.show['name'],
+                id: this.props.show['id']
+        });
+
+    }
 
 
 
@@ -61,7 +77,7 @@ class DetailsModal extends Component{
                         <View style={styles.buttonAndCover}>
                             <Image style={styles.imagePoster} source={{ uri: TMDB_IMG_URL+show['poster_path'] }}/>
                             <View>
-                                <Button primary style={styles.buttonStyle}>
+                                <Button primary style={styles.buttonStyle} onPress={this.onAddToWatchListPressed.bind(this)}>
                                     <Text style={styles.textStyleInsideImage}>ADD TO WATCHLIST</Text>
                                 </Button>
                                 <View style={styles.textContainer}>
@@ -81,7 +97,7 @@ class DetailsModal extends Component{
                     </CardItem>
                     <CardItem >
                         <Left>
-                            <Icon name='ios-desktop-outline' />
+                            <Icon name='ios-desktop-outline'  />
                             {this.renderNetworks()}
                         </Left>
                     </CardItem>
