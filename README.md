@@ -6,10 +6,10 @@ Keep track of your favorite tv shows and watchlist
 
 #### Requirements
 tvSeriesTracker was build using:
-[Node](https://nodejs.org/) v.8.11.1
-[npm](https://www.npmjs.com/) v.6.1.0
-[react-native-cli](https://github.com/facebook/react-native/tree/master/react-native-cli) v.2.0.1
-Android 8.0.0 Oreo
+- [Node](https://nodejs.org/) v.8.11.1
+- [npm](https://www.npmjs.com/) v.6.1.0
+- [react-native-cli](https://github.com/facebook/react-native/tree/master/react-native-cli) v.2.0.1
+- Android 8.0.0 Oreo
 
  ## 1. Clone This Repository
  ```sh
