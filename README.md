@@ -1,6 +1,7 @@
 # tvSeriesTracker using React-Native 
 
-Keep track of your favorite tv shows and watchlist
+Keep track of your favorite tv shows and watchlist. The app is built using
+[TMDB-API](https://www.themoviedb.org/documentation/api)
 
 # Installation
 
