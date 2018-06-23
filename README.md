@@ -48,4 +48,30 @@ $ react-native run-android
 ```
 
 
+# ScreenShots
+
+![login-signup](https://user-images.githubusercontent.com/15072613/41812877-11ebd916-7734-11e8-8cf3-5c949ae48c3a.png)
+
+If there is not account with the credentials provided then a new user is being signed up and a new account is created.
+
+
+![explore](https://user-images.githubusercontent.com/15072613/41812896-665ec562-7734-11e8-98c5-21cde999627f.png)
+
+In the explore tab users can discover new series
+
+![add-to-watchlist](https://user-images.githubusercontent.com/15072613/41812912-9428cf56-7734-11e8-9d63-71deef996e5c.png)
+
+User can view more details about a show and add it to the user's watchlist
+
+![watchlist](https://user-images.githubusercontent.com/15072613/41812919-a897e6c0-7734-11e8-95e8-f94f78a53c41.png)
+
+
+![drawer](https://user-images.githubusercontent.com/15072613/41812923-b8e2e3d6-7734-11e8-9ddf-2ad08c70b8c2.png)
+
+Drawer navigation to go to Profile Screen
+
+![sign-out](https://user-images.githubusercontent.com/15072613/41812957-1e1692c0-7735-11e8-91da-0a4dabd632ba.png)
+
+Profile screen to sign out
+
 
