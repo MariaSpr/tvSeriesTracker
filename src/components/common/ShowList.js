@@ -4,7 +4,6 @@ import { List, ListItem, Text, Thumbnail, Body, Left } from 'native-base';
 import axios from 'axios';
 import ShowDetail from './ShowDetail';
 import {TMDB_URL, TMDB_IMG_URL, TMDB_API_KEY} from './api';
-import InfiniteScroll from 'react-native-infinite-scroll';
 
 
 class ShowList extends Component{
