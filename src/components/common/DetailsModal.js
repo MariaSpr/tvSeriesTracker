@@ -53,14 +53,17 @@ class DetailsModal extends Component{
         const {currentUser} = firebase.auth();
         const showID = this.props.show['id'];
         var firebaseRef = firebase.database().ref(`users/${currentUser.uid}/watchlist`);
+        console.log(firebaseRef);
         console.log(firebaseRef.child(showID));
-        firebaseRef.child(showID).push({
+        console.log(firebaseRef.child(showID).key);
+        firebaseRef.child(showID).set({
                 original_name: this.props.show['original_name'],
                 backdrop_path: this.props.show['backdrop_path'],
                 overview: this.props.show['overview'],
                 name: this.props.show['name'],
                 id: this.props.show['id']
         });
+
 
     }
 
