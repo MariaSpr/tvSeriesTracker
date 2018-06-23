@@ -26,11 +26,6 @@ class MainScreen extends Component {
                     <Body>
                     <Title>tvSeriesTracker</Title>
                     </Body>
-                    <Right>
-                        <Button transparent>
-                            <Icon name='search'></Icon>
-                        </Button>
-                    </Right>
                 </Header>
                 <Content>
                     <Tabs initialPage={0}>
