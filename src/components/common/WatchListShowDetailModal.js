@@ -29,7 +29,7 @@ class DetailsModal extends Component{
 
     renderSeasons() {
         return this.state.seasons.map((season,index) =>
-                <SeasonDetail key={index} season={season} />
+            <SeasonDetail key={index} season={season} />
         );
     }
 
@@ -43,27 +43,19 @@ class DetailsModal extends Component{
 
     renderNetworks() {
         return this.state.networks.map((network,index) =>
-                <Text key={index}> {network['name']} </Text>
+            <Text key={index}> {network['name']} </Text>
 
         );
     }
 
-    onAddToWatchListPressed() {
-        console.log('add to watchlist pressed');
+    onRemoveFromWatchListPressed() {
         const {currentUser} = firebase.auth();
         const showID = this.props.show['id'];
         var firebaseRef = firebase.database().ref(`users/${currentUser.uid}/watchlist`);
         console.log(firebaseRef);
         console.log(firebaseRef.child(showID));
         console.log(firebaseRef.child(showID).key);
-        firebaseRef.child(showID).set({
-                original_name: this.props.show['original_name'],
-                poster_path: this.props.show['poster_path'],
-                backdrop_path: this.props.show['backdrop_path'],
-                overview: this.props.show['overview'],
-                name: this.props.show['name'],
-                id: this.props.show['id']
-        });
+        firebaseRef.child(showID).remove();
 
 
     }
@@ -81,8 +73,8 @@ class DetailsModal extends Component{
                         <View style={styles.buttonAndCover}>
                             <Image style={styles.imagePoster} source={{ uri: TMDB_IMG_URL+show['poster_path'] }}/>
                             <View>
-                                <Button primary style={styles.buttonStyle} onPress={this.onAddToWatchListPressed.bind(this)}>
-                                    <Text style={styles.textStyleInsideImage}>ADD TO WATCHLIST</Text>
+                                <Button primary style={styles.buttonStyle} onPress={this.onRemoveFromWatchListPressed.bind(this)}>
+                                    <Text style={styles.textStyleInsideImage}>REMOVE FROM WATCHLIST</Text>
                                 </Button>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.textStyleTitle}>{show['original_name']}</Text>
@@ -112,7 +104,7 @@ class DetailsModal extends Component{
                     </CardItem>
                     <CardItem>
                         <Body>
-                            <Text>{show['overview']}</Text>
+                        <Text>{show['overview']}</Text>
                         </Body>
                     </CardItem>
                 </Card>
@@ -144,15 +136,15 @@ const styles  = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         marginRight: 10,
-        marginLeft: 20,
+        marginLeft: 10,
     },
     buttonStyle: {
         padding: 10,
-        margin: 10,
+        margin: 5,
         borderRadius: 30,
     },
     textStyleTitle: {
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: 'bold',
         color: 'white',
     },

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, View, ScrollView, Image} from 'react-native';
 import ShowDetail from './ShowDetail';
 import firebase from 'firebase';
+import WatchListShowDetail from "./WatchListShowDetail";
 
 
 class ShowList extends Component{
@@ -32,7 +33,7 @@ class ShowList extends Component{
 
     renderShows() {
         return this.state.shows.map((show,index) =>
-            <ShowDetail key={index} show={show} />
+            <WatchListShowDetail key={index} show={show} />
         );
     }
 
